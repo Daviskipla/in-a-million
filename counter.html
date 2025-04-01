@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davis' 21st Birthday</title>
+    <audio id="birthday-audio" autoplay loop>
+        <source src="Kendrick Lamar - luther (Lyrics) ft. SZA - (360p).mp4" type="audio/mp4">
+        Your browser does not support the audio tag.
+    </audio>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('snap.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .throwback {
+            margin-top: 30px;
+        }
+
+        .throwback h2 {
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .throwback-images {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .throwback-images img {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Only the best! 🎉</h1>
+        <p>Cheers to new adventures! 🥂</p>
+        <div class="countdown" id="countdown"></div>
+
+        <div class="throwback">
+            <h2>THROWBACK 📸</h2>
+            <p>Reminiscing the best moments!</p>
+            <div class="throwback-images">
+                <img src="Adobe Express - file.jpg" alt="Throwback Image 1">
+                <img src="IMG_20250305_191152.jpg" alt="Throwback Image 2">
+                <img src="IMG_20250305_192003.jpg" alt="Throwback Image 3">
+                                                               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const birthday = new Date('April 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const diff = birthday - now;
+
+            if (diff >= 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s <br> Shifting gears to another level! 🎂`;
+            } else {
+                document.getElementById("countdown").innerHTML = 
+                    `NI God manze for the far 🙏`;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('birthday-audio');
+            audio.volume = 1.0;
+
+            audio.play().catch(() => {
+                let button = document.createElement('button');
+                button.innerText = "Play Music 🎶";
+                button.style.position = "absolute";
+                button.style.top = "50%";
+                button.style.left = "50%";
+                button.style.transform = "translate(-50%, -50%)";
+                button.style.padding = "10px 20px";
+                button.style.fontSize = "16px";
+                button.style.backgroundColor = "#ffcc00";
+                button.style.color = "#000";
+                button.style.border = "none";
+                button.style.borderRadius = "5px";
+                button.style.cursor = "pointer";
+                
+                document.body.appendChild(button);
+                
+                button.addEventListener('click', () => {
+                    audio.play();
+                    button.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

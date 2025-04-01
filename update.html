@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davis' 21st Birthday</title>
+    <audio id="birthday-audio" autoplay loop>
+        <source src="Kendrick Lamar - luther (Lyrics) ft. SZA - (360p).mp4" type="audio/mp4">
+        Your browser does not support the audio tag.
+    </audio>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('snap.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Only the best! 🎉</h1>
+        <p>Cheers to new adventures! 🥂</p>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            let currentYear = now.getFullYear();
+            let birthday = new Date(`April 1, ${currentYear} 00:00:00`).getTime();
+            let nextYearBirthday = new Date(`April 1, ${currentYear + 1} 00:00:00`).getTime();
+
+            if (now.getTime() >= birthday && now.getTime() < nextYearBirthday) {
+                // If today is April 1st, show the message
+                document.getElementById("countdown").innerHTML = "NI God manze for the far! 🎊";
+            } else {
+                // If today is before April 1st, count down to this year's birthday
+                if (now.getTime() < birthday) {
+                    targetDate = birthday;
+                } else {
+                    // If today is after April 1st, count down to next year's birthday
+                    targetDate = nextYearBirthday;
+                }
+
+                const diff = targetDate - now.getTime();
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s <br> Shifting gears to another level! 🎂`;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Audio Trimmer: Start music at a specific time, but allow normal looping
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('birthday-audio');
+            audio.volume = 1.0; // Set max volume
+            
+            // Set start time (in seconds)
+            const startTime = 15; // Adjust as needed
+            
+            // Set the start time when the audio first plays
+            audio.addEventListener('canplaythrough', function () {
+                if (audio.currentTime < startTime) {
+                    audio.currentTime = startTime;
+                }
+            });
+
+            // Try playing the audio, if blocked, ask for user interaction
+            audio.play().catch(() => {
+                let button = document.createElement('button');
+                button.innerText = "Play Music 🎶";
+                button.style.position = "absolute";
+                button.style.top = "50%";
+                button.style.left = "50%";
+                button.style.transform = "translate(-50%, -50%)";
+                button.style.padding = "10px 20px";
+                button.style.fontSize = "16px";
+                button.style.backgroundColor = "#ffcc00";
+                button.style.color = "#000";
+                button.style.border = "none";
+                button.style.borderRadius = "5px";
+                button.style.cursor = "pointer";
+                
+                document.body.appendChild(button);
+                
+                button.addEventListener('click', () => {
+                    audio.play();
+                    button.remove(); // Remove button after playing
+                });
+            });
+        });
+    </script>
+</body>
+</html>
