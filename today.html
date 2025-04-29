@@ -14,7 +14,7 @@
         <h1>Another year🎉</h1>
         <p class="text">Cheers to new adventures! 🥂</p>
         <div class="countdown" id="countdown"></div>
-        <p class="link">To see more <a href="gallary.html">CLICK HERE</a></p>
+        
     </div>
 
     <script>
@@ -24,7 +24,8 @@
             let birthday = new Date(`April 1, ${currentYear} 00:00:00`).getTime();
 
             if (now.getTime() >= birthday && now.getDate() === 1 && now.getMonth() === 3) {
-                document.getElementById("countdown").innerHTML = "NI God manze for the far! 🎊";
+                document.getElementById("countdown").innerHTML = 
+                    `NI God manze for the far! 🎊 <br> <a href="gallary.html" style="color: yellow; text-decoration: underline;">Check out the gallery</a>`;
                 return;
             }
 
